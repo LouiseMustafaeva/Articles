@@ -17,6 +17,7 @@
 		B778512D2B30531600EBD402 /* ArticlesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B778512C2B30531600EBD402 /* ArticlesUITests.swift */; };
 		B778512F2B30531600EBD402 /* ArticlesUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B778512E2B30531600EBD402 /* ArticlesUITestsLaunchTests.swift */; };
 		B778513C2B30542200EBD402 /* NewsScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = B778513B2B30542200EBD402 /* NewsScene.swift */; };
+		B778513E2B30553D00EBD402 /* NewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B778513D2B30553D00EBD402 /* NewsCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +51,7 @@
 		B778512C2B30531600EBD402 /* ArticlesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlesUITests.swift; sourceTree = "<group>"; };
 		B778512E2B30531600EBD402 /* ArticlesUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlesUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		B778513B2B30542200EBD402 /* NewsScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsScene.swift; sourceTree = "<group>"; };
+		B778513D2B30553D00EBD402 /* NewsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 				B778510C2B30531500EBD402 /* ArticlesApp.swift */,
 				B778510E2B30531500EBD402 /* ContentView.swift */,
 				B778513B2B30542200EBD402 /* NewsScene.swift */,
+				B778513D2B30553D00EBD402 /* NewsCell.swift */,
 				B77851102B30531600EBD402 /* Assets.xcassets */,
 				B77851152B30531600EBD402 /* Persistence.swift */,
 				B77851172B30531600EBD402 /* Articles.xcdatamodeld */,
@@ -270,6 +273,7 @@
 				B77851162B30531600EBD402 /* Persistence.swift in Sources */,
 				B778510F2B30531500EBD402 /* ContentView.swift in Sources */,
 				B778510D2B30531500EBD402 /* ArticlesApp.swift in Sources */,
+				B778513E2B30553D00EBD402 /* NewsCell.swift in Sources */,
 				B778513C2B30542200EBD402 /* NewsScene.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
