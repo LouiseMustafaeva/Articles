@@ -15,25 +15,35 @@ struct NewsScene: View {
         sortDescriptors: [NSSortDescriptor(keyPath: \Item.title, ascending: true)],
         animation: .default)
     private var items: FetchedResults<Item>
+    
+    @State private var searchText = ""
     var screenType: ScreenType
     var body: some View {
         NavigationView {
-                List {
-                    ForEach(items){ item in
-                        NavigationLink {
-                            DetailScene(imageUrl: item.imageUrl ?? "", title: item.title ?? "", author: item.author ?? "", date: item.date ?? "", content: item.subTitle ?? "")
-                        } label: {
-                            NewsCell(title: item.title ?? "", subTitle: item.subTitle ?? "", imageUrl: item.imageUrl ?? "")
-                                .listRowInsets(EdgeInsets())
-                                .listRowSeparator(.hidden)
-                        }.navigationBarTitleDisplayMode(.large)
-                    }
-                }.onAppear{
-                    let viewModel = ArticlesViewModel()
-                    viewModel.getData(screenType: screenType, items: items, viewContext: viewContext)
+            List {
+                ForEach(items){ item in
+                    NavigationLink {
+                        DetailScene(imageUrl: item.imageUrl ?? "", title: item.title ?? "", author: item.author ?? "", date: item.date ?? "", content: item.subTitle ?? "")
+                    } label: {
+                        NewsCell(title: item.title ?? "", subTitle: item.subTitle ?? "", imageUrl: item.imageUrl ?? "")
+                            .listRowInsets(EdgeInsets())
+                            .listRowSeparator(.hidden)
+                    }.navigationBarTitleDisplayMode(.large)
                 }
-                .scrollContentBackground(.hidden)
-                .navigationTitle("News")
+            }.onAppear{
+                let viewModel = ArticlesViewModel()
+                viewModel.getData(screenType: screenType, items: items, viewContext: viewContext)
+            }
+            .scrollContentBackground(.hidden)
+            .navigationTitle("News")
+            .searchable(text: $searchText, prompt: "Search title")
+            .onChange(of: searchText){ value in
+                if (searchText != ""){
+                    items.nsPredicate = NSPredicate(format: "title CONTAINS[c] %@", searchText)
+                } else {
+                    items.nsPredicate = nil
+                }
+            }
         }
     }
 }
