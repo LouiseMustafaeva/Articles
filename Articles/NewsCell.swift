@@ -9,23 +9,26 @@ import SwiftUI
 
 struct NewsCell: View {
     
+    let title: String
+    let subTitle: String
+    let image: String
+    
     var body: some View {
         HStack {
             VStack(alignment: .leading) {
-                Text("Stock market today: Live updates - CNBC")
+                Text(title)
                     .lineLimit(3)
                     .font(.headline)
                     .bold()
                     .listRowSeparator(.hidden)
                     .padding(.vertical)
-                Text("Stocks were little changed on Tuesday as Wall Street parsed through another round of inflation data in search for clues on when the Federal Reserve could start easing monetary policy.\r\nThe S&amp;P 50…")
+                Text(subTitle)
                     .lineLimit(2)
                     .font(.subheadline)
-                
             }
             Spacer()
             
-            Image(systemName: "camera.fill")
+            Image(systemName: image)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .padding(35)
@@ -42,6 +45,6 @@ struct NewsCell: View {
 
 struct NewsCell_Previews: PreviewProvider {
     static var previews: some View {
-        NewsCell()
+        NewsCell(title: "Stock market today: Live updates - CNBC", subTitle: "Stocks were little changed on Tuesday as Wall Street parsed through another round of inflation data in search for clues on when the Federal Reserve could start easing monetary policy.\r\nThe S&amp;P 50…", image: "camera.fill")
     }
 }
