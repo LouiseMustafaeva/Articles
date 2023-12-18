@@ -5,7 +5,7 @@
 //  Created by Louise on 18/12/23.
 //
 
-import Foundation
+import UIKit
 import Alamofire
 
 enum ScreenType {
@@ -14,11 +14,10 @@ enum ScreenType {
     case sport
 }
 
-
 class NetworkManager {
     var url = ""
     
-    func doRequest(type: ScreenType, completion: @escaping(Result<ArticlesModel, Error>) -> ()) {
+    func doRequest(type: ScreenType, completion: @escaping(ArticlesModel) -> ()) {
         
         switch type {
         case .home:
@@ -35,23 +34,68 @@ class NetworkManager {
             .response { response  in
                 guard let data = response.data else { return }
                 self.parseJSON(withData: data, completion: completion)
-                
             }
     }
     
     
-    func parseJSON(withData data: Data, completion: @escaping(Result<ArticlesModel, Error>) -> () ){
-        
+    func parseJSON(withData data: Data, completion: @escaping(ArticlesModel) -> () ){
         let decoder = JSONDecoder()
         
         do {
             let articles = try decoder.decode(ArticlesModel.self, from: data)
-            completion(.success(articles))
-            print(articles)
+            completion(articles)
         } catch let error as NSError{
-            print("Its error")
-            print(error)
+            print(error.localizedDescription)
         }
     }
 }
 
+class ImageViewModel: ObservableObject {
+    @Published var image: UIImage?
+    
+    private var imageCache: NSCache<NSString, UIImage>?
+    
+    init(urlString: String?) {
+        loadImage(urlString: urlString)
+    }
+    
+    private func loadImage(urlString: String?) {
+        
+        var customUrl = "https://developer.apple.com/news/images/og/swiftui-og.png"
+        
+        guard var urlString = urlString else { return }
+        if urlString == "" {
+            urlString = customUrl
+        }
+        if let imageFromCache = getImageFromCache(from: urlString) {
+            self.image = imageFromCache
+            return
+        }
+        
+        loadImageFromURL(urlString: urlString)
+    }
+    
+    private func loadImageFromURL(urlString: String) {
+        guard let url = URL(string: urlString) else { return }
+        
+        _ = AF.request(url).validate()
+            .response { response  in
+                guard let data = response.data else { return }
+                
+                DispatchQueue.main.async { [weak self] in
+                    guard let loadedImage = UIImage(data: data) else { return }
+                    print(url)
+                    self?.image = loadedImage
+                    self?.setImageCache(image: loadedImage, key: urlString)
+                }
+            }
+    }
+    
+    private func setImageCache(image: UIImage, key: String) {
+        imageCache?.setObject(image, forKey: key as NSString)
+    }
+    
+    private func getImageFromCache(from key: String) -> UIImage? {
+        return imageCache?.object(forKey: key as NSString) as? UIImage
+    }
+}

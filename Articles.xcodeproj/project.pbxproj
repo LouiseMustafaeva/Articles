@@ -104,6 +104,14 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		B72DF51D2B30611400E14CAF /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				B72DF51B2B3060D200E14CAF /* ArticlesViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		B77851002B30531500EBD402 = {
 			isa = PBXGroup;
 			children = (
@@ -129,7 +137,7 @@
 			children = (
 				B778510C2B30531500EBD402 /* ArticlesApp.swift */,
 				B778510E2B30531500EBD402 /* ContentView.swift */,
-				B72DF51B2B3060D200E14CAF /* ArticlesViewModel.swift */,
+				B72DF51D2B30611400E14CAF /* ViewModel */,
 				B72DF5192B30600700E14CAF /* NetworkManager.swift */,
 				B72DF5172B305FD800E14CAF /* View */,
 				B72DF5182B305FF100E14CAF /* Model */,
