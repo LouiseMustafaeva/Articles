@@ -20,7 +20,7 @@ struct NewsScene: View {
         NavigationView {
             List {
                 ForEach(items) { item in
-                    NewsCell(title: "", subTitle: "", image: "")
+                    NewsCell(title: "", subTitle: "", imageUrl: "")
                         .listRowInsets(EdgeInsets())
                         .listRowSeparator(.hidden)
                 }
