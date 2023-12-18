@@ -61,7 +61,7 @@ class ImageViewModel: ObservableObject {
     
     private func loadImage(urlString: String?) {
         
-        var customUrl = "https://developer.apple.com/news/images/og/swiftui-og.png"
+        let customUrl = "https://img.freepik.com/premium-vector/no-photo-available-vector-icon-default-image-symbol-picture-coming-soon-web-site-mobile-app_87543-14040.jpg"
         
         guard var urlString = urlString else { return }
         if urlString == "" {
