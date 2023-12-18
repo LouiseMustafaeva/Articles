@@ -16,7 +16,9 @@ struct NewsScene: View {
         animation: .default)
     private var items: FetchedResults<Item>
     
+    @ObservedObject var viewModel = ArticlesViewModel()
     @State private var searchText = ""
+    
     var screenType: ScreenType
     var body: some View {
         NavigationView {
@@ -26,12 +28,11 @@ struct NewsScene: View {
                         DetailScene(imageUrl: item.imageUrl ?? "", title: item.title ?? "", author: item.author ?? "", date: item.date ?? "", content: item.subTitle ?? "")
                     } label: {
                         NewsCell(title: item.title ?? "", subTitle: item.subTitle ?? "", imageUrl: item.imageUrl ?? "")
-                            .listRowInsets(EdgeInsets())
-                            .listRowSeparator(.hidden)
                     }.navigationBarTitleDisplayMode(.large)
+                        .listRowInsets(EdgeInsets())
+                        .listRowSeparator(.hidden)
                 }
             }.onAppear{
-                let viewModel = ArticlesViewModel()
                 viewModel.getData(screenType: screenType, items: items, viewContext: viewContext)
             }
             .scrollContentBackground(.hidden)

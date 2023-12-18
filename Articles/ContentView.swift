@@ -25,12 +25,12 @@ struct ContentView: View {
                     Label("Home", systemImage: "house")
                 }
             
-            NewsScene(screenType: .business)
+            BusinessScene(screenType: .business)
                 .tabItem {
                     Label("Business", systemImage: "briefcase")
                 }
             
-            NewsScene(screenType: .sport)
+            SportScene(screenType: .sport)
                 .tabItem {
                     Label("Sport", systemImage: "basketball.fill")
                 }
