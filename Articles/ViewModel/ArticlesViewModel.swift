@@ -10,8 +10,11 @@ import CoreData
 
 class ArticlesViewModel: ObservableObject {
     
+    private let networkManager = NetworkManager()
+    @Published var businessNews = [Main]()
+    @Published var sportNews = [Main]()
+    
     func getData(screenType: ScreenType, items: FetchedResults<Item>, viewContext: NSManagedObjectContext) {
-        let networkManager = NetworkManager()
         networkManager.doRequest(type: screenType) { result in
             
             if screenType != .home {
@@ -44,5 +47,9 @@ class ArticlesViewModel: ObservableObject {
                 }
             }
         }
+    }
+    
+    func getDataFromNetwork(screenType: ScreenType) {
+        
     }
 }

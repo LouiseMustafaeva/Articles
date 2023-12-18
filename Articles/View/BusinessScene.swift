@@ -8,13 +8,34 @@
 import SwiftUI
 
 struct BusinessScene: View {
+    @ObservedObject var viewModel = ArticlesViewModel()
+    
+    var screenType: ScreenType
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationView {
+            List {
+                ForEach(viewModel.businessNews, id: \.self){ item in
+                    
+                    NavigationLink {
+                        DetailScene(imageUrl: item.urlToImage ?? "", title: item.title ?? "", author: item.author ?? "", date: item.publishedAt ?? "", content: item.description ?? "")
+                    } label: {
+                        NewsCell(title: item.title ?? "", subTitle: item.description ?? "", imageUrl: item.urlToImage ?? "")
+                    }.navigationBarTitleDisplayMode(.large)
+                        .listRowInsets(EdgeInsets())
+                        .listRowSeparator(.hidden)
+                }
+            }.onAppear{
+                viewModel.getDataFromNetwork(screenType: screenType)
+            }
+            .scrollContentBackground(.hidden)
+            .navigationTitle("Business")
+        }
     }
 }
 
 struct BusinessScene_Previews: PreviewProvider {
     static var previews: some View {
-        BusinessScene()
+        BusinessScene(screenType: .business)
     }
 }

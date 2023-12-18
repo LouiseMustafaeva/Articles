@@ -7,13 +7,13 @@
 
 import Foundation
 
-struct ArticlesModel: Decodable {
+struct ArticlesModel: Decodable, Hashable {
     let status: String
     let totalResults: Int
     let articles: [Main]?
 }
 
-struct Main: Decodable {
+struct Main: Decodable, Hashable {
     let author: String?
     let title: String?
     let description: String?
