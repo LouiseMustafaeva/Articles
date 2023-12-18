@@ -20,17 +20,17 @@ struct ContentView: View {
     
     var body: some View {
         TabView(selection: $selection) {
-            NewsScene()
+            NewsScene(screenType: .home)
                 .tabItem {
                     Label("Home", systemImage: "house")
                 }
             
-            NewsScene()
+            NewsScene(screenType: .business)
                 .tabItem {
                     Label("Business", systemImage: "briefcase")
                 }
             
-            NewsScene()
+            NewsScene(screenType: .sport)
                 .tabItem {
                     Label("Sport", systemImage: "basketball.fill")
                 }
